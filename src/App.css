@@ -1,0 +1,120 @@
+body {
+  background-color: #f8f8f8 !important;
+}
+.App {
+  top: 0;
+  bottom: 10vh;
+}
+.navbarIcon {
+  height: 60px;
+}
+h3.logoTitle {
+  font-size: 40px;
+  font-weight: 700;
+  margin-right: 60px;
+  color: #4a82b9;
+}
+.homepage {
+  margin-top: 20vh;
+}
+.homepage2 {
+  margin-top: 20vh;
+
+  z-index: 0;
+}
+
+.bg-colour-change {
+  position: fixed;
+  top: 70vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #588fc750;
+  z-index: 2;
+}
+.bg-colour-change2 {
+  position: fixed;
+  top: 94vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #c6d7e8;
+  z-index: 2;
+}
+.globeIcon {
+  position: fixed;
+  top: 0;
+  right: 0;
+  fill: #4a82b9;
+  z-index: 1;
+}
+input {
+  border: rgba(0, 0, 0, 0.6) 1px solid;
+  border-radius: 2px;
+  height: 50px;
+  padding-bottom: 5px;
+}
+.submitJob {
+  border-radius: 100px;
+  background-color: #0a66c2;
+  font-size: 20px;
+}
+
+.submitJob:hover {
+  background-color: #004182;
+}
+
+.submitJob:focus,
+.submitJob:active {
+  background-color: #09223b !important;
+  box-shadow: none !important;
+}
+.formCol,
+.listCol {
+  z-index: 3;
+}
+
+.blueNav {
+  position: fixed;
+  top: 0;
+
+  z-index: 15;
+  background-color: #f8f8f8;
+}
+.favNav {
+  background-color: transparent;
+  color: #0a66c2;
+  border: #0a66c2 solid 1px;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 5px 22px;
+}
+.favNav:hover {
+  background-color: rgba(10, 102, 194, 0.2);
+  color: #0a66c2;
+  border: #0a66c2 solid 1px;
+}
+.favNav:focus,
+.favNav:active {
+  background-color: rgba(10, 102, 194, 0.4) !important;
+  color: #0a66c2 !important;
+  box-shadow: none !important;
+  border: #0a66c2 solid 1px;
+}
+.jobTitleCard {
+  font-size: 16px;
+  text-align: center;
+}
+.jobTitle {
+  color: #4a82b9;
+}
+.favIcon {
+  position: absolute;
+  font-size: 30px;
+  top: 0px;
+  right: 10px;
+}
+.favIcon:hover {
+  cursor: pointer;
+}
