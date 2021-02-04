@@ -25,6 +25,18 @@ class NavBar extends Component {
           className="favNav  ml-auto"
           onClick={(e) => {
             e.preventDefault();
+            console.log("toggle theme");
+            localStorage.getItem("DARK_THEME")
+              ? localStorage.removeItem("DARK_THEME")
+              : localStorage.setItem("DARK_THEME", true);
+          }}
+        >
+          Dark Theme
+        </Button>
+        <Button
+          className="favNav  ml-auto"
+          onClick={(e) => {
+            e.preventDefault();
             this.props.history.push("/fav/");
           }}
         >

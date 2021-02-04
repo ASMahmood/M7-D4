@@ -8,6 +8,8 @@ import HomePage from "./components/HomePage";
 import DetailPage from "./components/DetailPage";
 import Favourites from "./components/Favourites";
 
+import LightTheme from "./components/LightTheme";
+
 class App extends React.Component {
   render() {
     return (
