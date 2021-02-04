@@ -19,7 +19,10 @@ h3.logoTitle {
 }
 .homepage2 {
   margin-top: 5vh;
-  z-index: 0;
+  z-index: 1;
+}
+.detailBody {
+  z-index: 1;
 }
 
 .bg-colour-change {
@@ -125,5 +128,39 @@ input {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.transLogo {
+  position: fixed;
+  top: 0;
+  right: 15vw;
+  height: 500px;
+  width: 500px;
+  z-index: -1;
+}
+.transLogo img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  opacity: 0.4;
+}
+.color-change-2x {
+  -webkit-animation: color-change-2x 2s linear infinite alternate both;
+  animation: color-change-2x 2s linear infinite alternate both;
+}
+@-webkit-keyframes color-change-2x {
+  0% {
+    background: #4a81b94f;
+  }
+  100% {
+    background: #f8f8f800;
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: #4a81b94f;
+  }
+  100% {
+    background: #f8f8f800;
   }
 }

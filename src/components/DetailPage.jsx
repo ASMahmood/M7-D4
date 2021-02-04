@@ -29,7 +29,7 @@ class DetailPage extends Component {
   render() {
     return this.props.jobSearch.selectedJob ? (
       <>
-        <Row className="homepage2">
+        <Row className="homepage2 ">
           <Col xs={12}>
             {console.log(this.props)}
             <h1 className="jobTitle">
@@ -38,6 +38,7 @@ class DetailPage extends Component {
           </Col>
           <Col xs={12}>
             <h4 className="d-flex align-items-center">
+              {this.props.jobSearch.selectedJob.company} -{" "}
               {this.props.jobSearch.selectedJob.location},{" "}
               {this.props.jobSearch.selectedJob.type}{" "}
               {this.props.favouriteJobList.find(
@@ -68,11 +69,17 @@ class DetailPage extends Component {
             </h4>
           </Col>
         </Row>
-        <Row className="mb-5">
+        <Row className="mb-5 detailBody">
           <Col xs={12}>
             <div dangerouslySetInnerHTML={this.htmlDesc()} />
           </Col>
         </Row>
+        <div className="transLogo ">
+          <img
+            src={this.props.jobSearch.selectedJob.company_logo}
+            alt="compnayLogo"
+          />
+        </div>
       </>
     ) : (
       <Row className="homepage2">
