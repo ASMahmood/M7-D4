@@ -95,8 +95,8 @@ class HomePage extends Component {
         </Col>
         <Col xs={12} lg={6} className="listCol">
           <CardColumns className="w-100">
-            {this.props.jobList &&
-              this.props.jobList.map((job, index) => (
+            {this.props.jobSearch.jobList &&
+              this.props.jobSearch.jobList.map((job, index) => (
                 <JobListing job={job} key={index} />
               ))}
           </CardColumns>

@@ -20,28 +20,33 @@ const mapDispatchToProps = (dispatch) => ({
 
 class DetailPage extends Component {
   htmlDesc = () => {
-    return { __html: this.props.selectedJob.description };
+    return { __html: this.props.jobSearch.selectedJob.description };
   };
   htmlApply = () => {
-    return { __html: this.props.selectedJob.how_to_apply };
+    return { __html: this.props.jobSearch.selectedJob.how_to_apply };
   };
 
   render() {
-    return this.props.selectedJob ? (
+    return this.props.jobSearch.selectedJob ? (
       <>
         <Row className="homepage2">
           <Col xs={12}>
-            <h1 className="jobTitle">{this.props.selectedJob.title}</h1>
+            <h1 className="jobTitle">
+              {this.props.jobSearch.selectedJob.title}
+            </h1>
           </Col>
           <Col xs={12}>
             <h4 className="d-flex align-items-center">
-              {this.props.selectedJob.location}, {this.props.selectedJob.type}{" "}
+              {this.props.jobSearch.selectedJob.location},{" "}
+              {this.props.jobSearch.selectedJob.type}{" "}
               {this.props.favouriteJobList.find(
-                (job) => job.id === this.props.selectedJob.id
+                (job) => job.id === this.props.jobSearch.selectedJob.id
               ) ? (
                 <span
                   onClick={() =>
-                    this.props.unFavouriteJob(this.props.selectedJob.id)
+                    this.props.unFavouriteJob(
+                      this.props.jobSearch.selectedJob.id
+                    )
                   }
                 >
                   <AiFillStar className="ml-2" s fill="#4a82b9" />
@@ -49,7 +54,7 @@ class DetailPage extends Component {
               ) : (
                 <span
                   onClick={() =>
-                    this.props.favouriteJob(this.props.selectedJob)
+                    this.props.favouriteJob(this.props.jobSearch.selectedJob)
                   }
                 >
                   <AiOutlineStar
@@ -72,7 +77,7 @@ class DetailPage extends Component {
             xs={12}
             className="d-flex justify-content-center align-items-center"
           >
-            <h4>{this.props.selectedJob.company}</h4>
+            <h4>{this.props.jobSearch.selectedJob.company}</h4>
           </Col>
         </Row>
       </>
