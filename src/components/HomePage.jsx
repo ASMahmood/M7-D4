@@ -1,15 +1,40 @@
 import React, { Component } from "react";
-import { Row, Col, Form, Button, CardColumns } from "react-bootstrap";
+import { Row, Col, Form, Button, CardColumns, Alert } from "react-bootstrap";
 import JobListing from "./JobListing";
+import ErrorAlert from "./ErrorAlert";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  populateJobList: (jobList) =>
-    dispatch({
-      type: "POPULATE_JOB_LIST",
-      payload: jobList,
+  populateJobList: (job, location) =>
+    dispatch(async (dispatch, getState) => {
+      let response = await fetch(
+        `https://yabba-dabba-duls-cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${job}&location=${location}`
+      );
+      let jobList = await response.json();
+      if (response.ok) {
+        dispatch({
+          type: "POPULATE_JOB_LIST",
+          payload: jobList,
+        });
+        if (jobList.length === 0) {
+          dispatch({
+            type: "SET_ERROR_CODE",
+            payload: 404,
+          });
+          dispatch({
+            type: "SET_ERROR_MESSAGE",
+            payload: "There are no jobs that match your specifications",
+          });
+          dispatch({
+            type: "TOGGLE_ERROR",
+            payload: true,
+          });
+        }
+      } else {
+        console.log(jobList);
+      }
     }),
 });
 
@@ -31,22 +56,9 @@ class HomePage extends Component {
       if (this.state.location === "") {
         this.setState({ location: "Any Location" });
       }
-      this.fetchJobs();
+      this.props.populateJobList(this.state.job, this.state.location);
     }
     this.setState({ validated: true });
-  };
-
-  fetchJobs = async () => {
-    try {
-      let response = await fetch(
-        `https://yabba-dabba-duls-cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${this.state.job}&location=${this.state.location}`
-      );
-      let jobList = await response.json();
-      this.props.populateJobList(jobList);
-      console.log(jobList);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   render() {
@@ -94,6 +106,8 @@ class HomePage extends Component {
           </Form>
         </Col>
         <Col xs={12} lg={6} className="listCol">
+          <ErrorAlert />
+
           <CardColumns className="w-100">
             {this.props.jobSearch.jobList &&
               this.props.jobSearch.jobList.map((job, index) => (

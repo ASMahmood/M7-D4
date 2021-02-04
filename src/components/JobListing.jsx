@@ -7,10 +7,13 @@ import { AiFillStar } from "react-icons/ai";
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  selectThisJob: (job) =>
-    dispatch({
-      type: "SELECT_SINGLE_JOB",
-      payload: job,
+  selectThisJob: (job, route) =>
+    dispatch((dispatch, getState) => {
+      dispatch({
+        type: "SELECT_SINGLE_JOB",
+        payload: job,
+      });
+      route.push("/details/");
     }),
   unFavouriteJob: (id) =>
     dispatch({
@@ -22,8 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 class JobListing extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.selectThisJob(this.props.job);
-    this.props.history.push("/details/");
+    this.props.selectThisJob(this.props.job, this.props.history);
   };
   render() {
     return (
