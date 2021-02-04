@@ -40,7 +40,8 @@ class JobListing extends Component {
             {this.props.job.title}
           </Card.Title>
           <Card.Text>
-            {this.props.job.location}, {this.props.job.type}
+            {this.props.job.location}, {this.props.job.type} @{" "}
+            {this.props.job.company}
           </Card.Text>
           <Button onClick={(e) => this.handleSubmit(e)}>See more</Button>
         </Card.Body>

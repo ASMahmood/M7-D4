@@ -15,11 +15,10 @@ h3.logoTitle {
   color: #4a82b9;
 }
 .homepage {
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 .homepage2 {
-  margin-top: 20vh;
-
+  margin-top: 5vh;
   z-index: 0;
 }
 
@@ -75,9 +74,8 @@ input {
 }
 
 .blueNav {
-  position: fixed;
+  position: sticky;
   top: 0;
-
   z-index: 15;
   background-color: #f8f8f8;
 }
@@ -117,4 +115,15 @@ input {
 }
 .favIcon:hover {
   cursor: pointer;
+}
+.speen {
+  animation: spin 0.25s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

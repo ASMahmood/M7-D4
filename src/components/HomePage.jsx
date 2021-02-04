@@ -7,6 +7,11 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
+  toggleLoad: (load) =>
+    dispatch({
+      type: "TOGGLE_LOADING",
+      payload: load,
+    }),
   populateJobList: (job, location) =>
     dispatch(async (dispatch, getState) => {
       let response = await fetch(
@@ -48,7 +53,7 @@ class HomePage extends Component {
     location: "",
     validated: false,
   };
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
@@ -60,7 +65,9 @@ class HomePage extends Component {
       if (this.state.location === "") {
         this.setState({ location: "Any Location" });
       }
-      this.props.populateJobList(this.state.job, this.state.location);
+      this.props.toggleLoad(true);
+      await this.props.populateJobList(this.state.job, this.state.location);
+      this.props.toggleLoad(false);
     }
     this.setState({ validated: true });
   };
@@ -68,12 +75,12 @@ class HomePage extends Component {
   render() {
     return (
       <Row className="homepage">
-        <Col xs={12} className="formCol">
+        <Col xs={12} lg={{ offset: 3, span: 6 }} className="formCol ">
           <Form
             noValidate
             validated={this.state.validated}
             onSubmit={(e) => this.handleSubmit(e)}
-            className="searchForm"
+            className="searchForm "
           >
             <Form.Group controlId="formJobTitle">
               <Form.Control
@@ -113,7 +120,7 @@ class HomePage extends Component {
           <ErrorAlert />
 
           <CardColumns className="w-100">
-            {this.props.jobSearch.jobList &&
+            {this.props.jobSearch.jobList.length > 0 &&
               this.props.jobSearch.jobList.map((job, index) => (
                 <JobListing job={job} key={index} />
               ))}

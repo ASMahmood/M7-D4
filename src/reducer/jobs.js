@@ -10,6 +10,11 @@ export default function (state = {}, action) {
         ...state,
         jobList: action.payload,
       };
+    case "TOGGLE_LOADING":
+      return {
+        ...state,
+        loading: action.payload,
+      };
 
     default:
       return state;

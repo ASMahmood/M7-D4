@@ -11,6 +11,7 @@ const initialState = {
   jobSearch: {
     jobList: [],
     selectedJob: {},
+    loading: false,
   },
   error: {
     errCode: 0,
