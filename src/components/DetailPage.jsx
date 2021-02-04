@@ -31,6 +31,7 @@ class DetailPage extends Component {
       <>
         <Row className="homepage2">
           <Col xs={12}>
+            {console.log(this.props)}
             <h1 className="jobTitle">
               {this.props.jobSearch.selectedJob.title}
             </h1>
@@ -70,14 +71,6 @@ class DetailPage extends Component {
         <Row className="mb-5">
           <Col xs={12}>
             <div dangerouslySetInnerHTML={this.htmlDesc()} />
-          </Col>
-        </Row>
-        <Row className="bg-colour-change2 ">
-          <Col
-            xs={12}
-            className="d-flex justify-content-center align-items-center"
-          >
-            <h4>{this.props.jobSearch.selectedJob.company}</h4>
           </Col>
         </Row>
       </>

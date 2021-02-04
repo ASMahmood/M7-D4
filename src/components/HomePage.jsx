@@ -18,6 +18,10 @@ const mapDispatchToProps = (dispatch) => ({
           type: "POPULATE_JOB_LIST",
           payload: jobList,
         });
+        dispatch({
+          type: "TOGGLE_ERROR",
+          payload: false,
+        });
         if (jobList.length === 0) {
           dispatch({
             type: "SET_ERROR_CODE",
@@ -64,7 +68,7 @@ class HomePage extends Component {
   render() {
     return (
       <Row className="homepage">
-        <Col xs={12} lg={6} className="formCol">
+        <Col xs={12} className="formCol">
           <Form
             noValidate
             validated={this.state.validated}
@@ -105,7 +109,7 @@ class HomePage extends Component {
             </Button>
           </Form>
         </Col>
-        <Col xs={12} lg={6} className="listCol">
+        <Col xs={12} className="listCol">
           <ErrorAlert />
 
           <CardColumns className="w-100">

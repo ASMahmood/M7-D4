@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, CardColumns } from "react-bootstrap";
+import { Row, Col, CardColumns, Alert } from "react-bootstrap";
 import JobListing from "./JobListing";
 import { connect } from "react-redux";
 
@@ -9,13 +9,18 @@ class Favourites extends Component {
   render() {
     return (
       <Row className="homepage">
-        <Col xs={12} lg={6} className="listCol">
-          <CardColumns className="w-100">
-            {this.props.favouriteJobList &&
-              this.props.favouriteJobList.map((job, index) => (
+        <Col xs={12} className="listCol">
+          {this.props.favouriteJobList.length > 0 ? (
+            <CardColumns className="w-100">
+              {this.props.favouriteJobList.map((job, index) => (
                 <JobListing job={job} key={index} />
               ))}
-          </CardColumns>
+            </CardColumns>
+          ) : (
+            <Alert variant="light text-center">
+              <h1 className="jobTitle">You have no favourited jobs</h1>
+            </Alert>
+          )}
         </Col>
         <svg
           className="globeIcon"
